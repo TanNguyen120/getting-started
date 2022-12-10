@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import ApiThings from './components/apiThings';
 import GreetingText from './components/greetingText';
 import InputSection from './components/inputSection';
 import SectionListBasics from './components/reactNativeList';
@@ -12,6 +13,7 @@ export default function App() {
       <InputSection />
       <ScrollViewSection />
       <SectionListBasics />
+      <ApiThings />
       <StatusBar style="auto" />
     </View>
   );
