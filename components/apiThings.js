@@ -3,19 +3,25 @@ import React, { useEffect, useState } from 'react'
 import { ScrollView, Text, View } from 'react-native';
 
 const ApiThings = () => {
-    const [apiContent, setApiContent] = useState("");
+    const [apiContent, setApiContent] = useState([]);
 
     useEffect(() => {
         const getApiData = async () => {
             const searchUrl = `https://cungcau.net/index.php/20-bai-viet-cua-admin/3-thong-bao-k-hoch-ct-din-an-giang`;
             const response = await fetch(searchUrl);      // fetch page 
             const responseData = await response.text();
+            const $ = cheerio.load(responseData);           // parse HTML string
+            const theList = $('.entry-content > p').text();
+            let theArray = [];
+            await $('.entry-content > p').each((_, e) => {
+                theArray.push($(e).text());
+            })
 
             // const htmlString = await response.text();     // get response text
             // const $ = cheerio.load(htmlString);           // parse HTML string
 
             // const liList = $("#s-results-list-atf > li"); // select result <li>s
-            setApiContent(responseData);
+            setApiContent(theArray);
         }
         getApiData()
     }, [])
@@ -23,9 +29,8 @@ const ApiThings = () => {
         <View>
             <ScrollView pagingEnabled={true}>
 
-                <Text>
-                    {JSON.stringify(apiContent)}
-                </Text>
+                {apiContent.map((e) => <Text>{e}</Text>)}
+
             </ScrollView>
         </View>
     )

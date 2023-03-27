@@ -9,10 +9,10 @@ import ScrollViewSection from './components/scrollViewSection';
 export default function App() {
   return (
     <View style={styles.container}>
-      <GreetingText />
+      {/* <GreetingText />
       <InputSection />
       <ScrollViewSection />
-      <SectionListBasics />
+      <SectionListBasics /> */}
       <ApiThings />
       <StatusBar style="auto" />
     </View>
