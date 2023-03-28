@@ -1,8 +1,11 @@
 import cheerio from 'cheerio-without-node-native/lib/cheerio';
 import React, { useEffect, useState } from 'react'
 import { ScrollView, Text, View } from 'react-native';
+import { useTheme } from 'react-native-paper';
 
 const ApiThings = () => {
+
+    const theme = useTheme();
     const [apiContent, setApiContent] = useState([]);
 
     useEffect(() => {
@@ -26,10 +29,10 @@ const ApiThings = () => {
         getApiData()
     }, [])
     return (
-        <View>
-            <ScrollView pagingEnabled={true}>
+        <View style={{ backgroundColor: theme.colors.secondaryContainer, padding: 20 }}>
+            <ScrollView className=' grid grid-cols-1 mb-48' >
 
-                {apiContent.map((e) => <Text>{e}</Text>)}
+                {apiContent.map((e) => <Text className={'my-6'}>{e}</Text>)}
 
             </ScrollView>
         </View>
